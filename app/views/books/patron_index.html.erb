@@ -1,0 +1,42 @@
+<form action="search">
+  <input type="text" name="q" placeholder="Search">
+  <button type="submit">Search</button>
+  <select name="search_by">
+              <option value = "title">Title</option>
+              <option value = "author">Author</option>
+              <option value = "ISBN">ISBN</option>
+  </select>
+</form>
+<h1>Patron: Books</h1>
+<a><%=	link_to 'Home', root_path()	%></a>
+<%	if @book.errors.any?	%>
+  <div	id="error_explanation">
+    <h2>
+    error/s	prohibited
+    this book from being saved:
+    </h2>
+    <ul>
+      <%	@book.errors.full_messages.each do	|msg|	%>
+      <li><%=	msg %></li>
+      <%	end	%>
+    </ul>
+  </div>
+<%	end	%>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>ISBN</th>
+      <th>Copies</th>
+      <th></th>
+    </tr>
+    <%	@books.each do	|book|	%>
+    <tr>
+      <td><%=	book.title %></td>
+      <td><%=	book.author %></td>
+      <td><%=	book.ISBN %></td>
+      <td><%=	book.copies %></td>
+      <td><%=	link_to 'View reviews', book_comments_path(book)	  %></td>
+      <td><%=	link_to 'Add review', new_book_comment_path(book)	%></td>
+    <%	end	%>
+  </table>

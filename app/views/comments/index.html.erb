@@ -1,0 +1,14 @@
+<h2>Comments</h2>
+<a><%=	link_to 'Home', root_path()	%></a>
+<a><%=	link_to 'Books', patron_books_path()	%></a>
+<a><%=	link_to 'Back', '/patron/books'	%></a>
+<%	@book.comments.each do	|comment|	%>
+  <p>
+    <strong>Commenter:</strong>
+    <%=	comment.commenter %>
+  </p>
+  <p>
+    <strong>Comment:</strong>
+    <%=	comment.body %>
+  </p>
+<%	end	%>
